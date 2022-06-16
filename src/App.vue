@@ -1,32 +1,31 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
+      <!-- <router-link to="/">Home</router-link> |
+      <router-link to="/assistant">拜访助手</router-link> -->
     <router-view/>
+    <van-tabbar v-model="active">
+      <van-tabbar-item icon="customer-visit" @click="$router.push('/')">客户拜访</van-tabbar-item>
+      <van-tabbar-item icon="map-distribution" @click="$router.push('/')">地图分布</van-tabbar-item>
+      <van-tabbar-item icon="work-assistant" @click="$router.push('/assistant')">工作助手</van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
-
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+export default {
+  data () {
+    return {
+      active: 0
+    }
+  },
+  methods: {
+    assistant () {
+      this.active = 3
+      this.$router.push('/assistant')
     }
   }
 }
+</script>
+
+<style lang="less">
+
 </style>
