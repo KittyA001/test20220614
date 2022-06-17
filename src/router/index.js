@@ -1,20 +1,43 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+import Smoking from '@/views/Smoking.vue'
 Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home'
-    // component: HomeView
+    name: 'layout',
+    redirect: '/customerVisit',
+    component: () => import('@/views/Layout.vue'),
+    children: [
+      {
+        path: 'assistant',
+        name: 'assistant',
+        component: () => import('@/views/AboutView.vue'),
+      },
+      {
+        path: 'customerVisit',
+        name: 'customerVisit',
+        component: () => import('@/views/CustomerVisit.vue'),
+      },
+      {
+        path: 'mapDistribution',
+        name: 'mapDistribution',
+        component: () => import('@/views/MapDistribution.vue'),
+      },
+    ]
   },
   {
-    path: '/assistant',
-    name: 'assistant',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import('@/views/AboutView.vue')
+    path: '/Smoking',
+    name: 'Smoking',
+    component: Smoking,
+  },
+  {
+    path: '/created',
+    name: 'created',
+    component: () => import('@/views/Created.vue')
   }
+
 ]
 
 const router = new VueRouter({
